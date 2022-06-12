@@ -1,0 +1,138 @@
+﻿@page "/"
+<PageTitle>CRM AppFox</PageTitle>
+
+<div class="container-fluid">
+    <div class="row header">
+        <div class="col">
+            <input class="form-control" placeholder="add new task" @bind="addTask" />
+         </div>
+        <div class="col">
+            <button class="btn btn-success oi oi-plus" @onclick="AddNewTask"></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col columnOfNewTasks">
+            <h3>The new task</h3>
+            @foreach (var item in anyTask)
+                {
+                if (item.taskStatus == 0)
+                {
+                    <div class="taskBlock">
+                        <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col taskTitleBlock">
+                                          @item.Title
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                            <button class="btn btn-success next" @onclick="(() => next(item))"><h5>&rsaquo;</h5></button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col columnOfInTheProcess">
+            <h3>In the process</h3>
+            @foreach (var item in anyTask)
+            {
+                if (item.taskStatus == 1)
+                {
+                 <div class="taskBlock">
+                        <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col taskTitleBlock">
+                                        @item.Title
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button class="btn btn-warning previous" @onclick="(() => previous(item))"><h5>&lsaquo;</h5></button>
+                                        <button class="btn btn-success next" @onclick="(() => next(item))"><h5>&rsaquo;</h5></button>
+                                    </div>
+                                </div>
+                         </div>
+                </div>
+                }
+            }
+        </div>
+        <div class="col columnOfunderReview">
+            <h3>Under review</h3>
+            @foreach (var item in anyTask)
+            {
+                if (item.taskStatus == 2)
+                {
+                 <div class="taskBlock">
+                        <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col taskTitleBlock">
+                                        @item.Title
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button class="btn btn-warning previous" @onclick="(() => previous(item))"><h5>&lsaquo;</h5></button>
+                                        <button class="btn btn-success next" @onclick="(() => next(item))"><h5>&rsaquo;</h5></button>
+                                    </div>
+                                </div>
+                         </div>
+                </div>
+                }
+            }
+        </div>
+        <div class="col columnOfCompleted">
+            <h3>Completed</h3>
+            @foreach (var item in anyTask)
+            {
+                if (item.taskStatus == 3)
+                {
+                 <div class="taskBlock">
+                        <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col taskTitleBlock">
+                                        @item.Title
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button class="btn btn-warning previous" @onclick="(() => previous(item))"><h5>&lsaquo;</h5></button>
+                                    </div>
+                                </div>
+                         </div>
+                </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+    private string addTask;
+    private IList<TaskItem> anyTask = new List<TaskItem>();
+
+    private void AddNewTask()
+    {
+        if(!string.IsNullOrWhiteSpace(addTask))
+        {
+            anyTask.Add(new TaskItem 
+                        {
+                            Title = addTask,
+                            taskStatus = 0
+                        });
+            addTask = string.Empty;
+        }
+    }
+    private void next(TaskItem taskItem)
+    {
+        taskItem.taskStatus++;
+    }
+    private void previous(TaskItem taskItem)
+    {
+        taskItem.taskStatus--;
+    }
+
+}

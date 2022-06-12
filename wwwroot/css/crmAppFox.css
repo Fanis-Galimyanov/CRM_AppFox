@@ -1,0 +1,42 @@
+﻿.header{
+    margin: 1%;
+}
+.taskBlock {
+    width: 100%;
+    border-radius: 20px;
+    border: solid red;
+    margin-bottom: 10px;
+}
+.taskTitleBlock {
+    margin: 5px;
+}
+.columnOfNewTasks {
+    border: solid lime;
+    background-color: Tan;
+}
+.columnOfInTheProcess {
+    border: solid lime;
+    background-color: DarkSeaGreen;
+    margin-left: 2%;
+}
+.columnOfunderReview {
+    border: solid lime;
+    background-color: CadetBlue;
+    margin-left: 2%;
+}
+.columnOfCompleted {
+    border: solid lime;
+    background-color: LightGreen;
+    margin-left: 2%;
+}
+.previous {
+    margin-top: 10%;
+    margin-bottom: 2%;
+    float: left;
+}
+.next {
+    margin-left: 65%;
+    margin-top: 10%;
+    float: left;
+    margin-bottom: 2%;
+}
